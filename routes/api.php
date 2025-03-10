@@ -7,17 +7,10 @@ use App\Http\Controllers\Api\autosController;
 
 Route::get('/autos', [autosController::class,'index']);
 
-
-Route::get('/autos/{id}', function () {
-    return 'obteniendo un estudiante';
-});
+Route::get('/autos/{id}', [autosController::class, 'show']);
 
 Route::post('/autos', [autosController::class,'store']);
 
-Route::put('/autos/{id}', function () {
-    return 'actualizando autos';
-});
+Route::put('/autos/{id}', [autosController::class, 'update']);
 
-Route::delete('/autos', function () {
-    return 'eliminando autos';
-});
+Route::delete('/autos/{id}', [autosController::class, 'delete']);
