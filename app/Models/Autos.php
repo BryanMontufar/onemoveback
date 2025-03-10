@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Compra;
 
 class Autos extends Model
 {
@@ -22,4 +23,8 @@ class Autos extends Model
       'estatus',
       'fecha_ingreso'
     ];
+    public function compras()
+    {
+        return $this->hasMany(Compra::class, 'auto_id');
+    }
 }
