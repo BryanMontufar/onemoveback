@@ -118,6 +118,7 @@ class autosController extends Controller
             'estatus' => 'required',
             'fecha_ingreso' => 'required|date'
         ]);
+        
         if ($validator->fails()) {
             $data = [
                 'message' => 'error',
@@ -144,6 +145,7 @@ class autosController extends Controller
         ];
         return response()->json($data, 200);
     }
+    
     public function delete($id)
     {
         $autos = Autos::find($id);
