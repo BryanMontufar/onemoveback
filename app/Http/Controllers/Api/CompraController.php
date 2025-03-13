@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Validator;
 
 class CompraController extends Controller
 {
-
     public function index()
     {
         $compras = Compra::all();
