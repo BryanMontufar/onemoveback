@@ -25,7 +25,7 @@ Route::post('/reparaciones', [reparacionesController::class, 'store']);
 
 Route::put('/autos/{id}', [autosController::class, 'update']);
 Route::put('/compras/{id}', [CompraController::class, 'update']);
-Route::put('/compras/{id}', [reparacionesController::class, 'update']);
+Route::put('/reparaciones/{id}', [reparacionesController::class, 'update']);
 
 Route::delete('/autos/{id}', [autosController::class, 'delete']);
 

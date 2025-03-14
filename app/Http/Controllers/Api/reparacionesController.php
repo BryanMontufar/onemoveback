@@ -14,13 +14,12 @@ class reparacionesController extends Controller
         $reparaciones = Reparaciones::all();
 
         if ($reparaciones->isEmpty()) {
-
-            $data = [
-                'message' => 'no se encontraron autos',
+            return response()->json([
+                'message' => 'No se encontraron reparaciones',
                 'status' => 200
-            ];
-            return response()->json($data, 400);
+            ], 400);
         }
+
         return response()->json($reparaciones, 200);
     }
 
@@ -51,40 +50,42 @@ class reparacionesController extends Controller
             'fecha_pago' => 'nullable|date',
         ]);
 
-        $reparaciones = Reparaciones::create($request->all());
+        $reparacion = Reparaciones::create($request->all());
 
-        return response()->json(['message' => 'Compra registrada con éxito', 'compra' => $reparaciones], 201);
+        return response()->json([
+            'message' => 'Reparación registrada con éxito',
+            'reparacion' => $reparacion
+        ], 201);
     }
 
     public function show($auto_id)
     {
-        $reparaciones = Reparaciones::where('auto_id', $auto_id)->first();
+        $reparacion = Reparaciones::where('auto_id', $auto_id)->first();
 
-        if (!$reparaciones) {
+        if (!$reparacion) {
             return response()->json([
-                'message' => 'No se encontró una compra para este auto',
+                'message' => 'No se encontró una reparación para este auto',
                 'status' => 404
             ], 404);
         }
 
         return response()->json([
-            'compra' => $reparaciones,
+            'reparacion' => $reparacion,
             'status' => 200
         ], 200);
     }
 
     public function update(Request $request, $id)
     {
-        $reparaciones = Reparaciones::find($id);
-        if (!$reparaciones) {
-            $data = [
-                'message' => 'Auto no encontrado',
+        $reparacion = Reparaciones::find($id);
+
+        if (!$reparacion) {
+            return response()->json([
+                'message' => 'Reparación no encontrada',
                 'status' => 404
-            ];
-            return response()->json($data, 404);
+            ], 404);
         }
 
-        // Validación de los datos recibidos
         $validator = Validator::make($request->all(), [
             'auto_id' => 'required|exists:autos,id',
             'lavada' => 'nullable|numeric',
@@ -109,43 +110,20 @@ class reparacionesController extends Controller
             'estado_ctr' => 'nullable|string',
         ]);
 
-        // Si hay errores en la validación, devolverlos
         if ($validator->fails()) {
-            $data = [
-                'message' => 'error',
+            return response()->json([
+                'message' => 'Error en la validación',
                 'errors' => $validator->errors(),
                 'status' => 400
-            ];
-            return response()->json($data, 400);
+            ], 400);
         }
 
-        $reparaciones->lavada = $request->lavada;
-        $reparaciones->detailing = $request->detailing;
-        $reparaciones->pulida = $request->pulida;
-        $reparaciones->pintura = $request->pintura;
-        $reparaciones->electrico = $request->electrico;
-        $reparaciones->mecanica = $request->mecanica;
-        $reparaciones->gasolina = $request->gasolina;
-        $reparaciones->publicacion = $request->publicacion;
-        $reparaciones->fotos = $request->fotos;
-        $reparaciones->papeles = $request->papeles;
-        $reparaciones->poder = $request->poder;
-        $reparaciones->varios = $request->varios;
-        $reparaciones->autostudio = $request->autostudio;
-        $reparaciones->accesorios = $request->accesorios;
-        $reparaciones->cargas = $request->cargas;
-        $reparaciones->avaluo = $request->avaluo;
-        $reparaciones->fideval = $request->fideval;
-        $reparaciones->costo_total_preparacion = $request->costo_total_preparacion;
-        $reparaciones->canc_consg = $request->canc_consg;
-        $reparaciones->estado_ctr = $request->estado_ctr;
+        $reparacion->update($request->all());
 
-        $reparaciones->save();
-        $data = [
-            'message' => 'actualizado',
-            'autos' => $reparaciones,
+        return response()->json([
+            'message' => 'Reparación actualizada con éxito',
+            'reparacion' => $reparacion,
             'status' => 200
-        ];
-        return response()->json($data, 200);
+        ], 200);
     }
 }
