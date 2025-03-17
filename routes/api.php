@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\autosController;
 use App\Http\Controllers\Api\CompraController;
 use App\Http\Controllers\Api\reparacionesController;
 use App\Http\Controllers\Api\ventasController;
+use App\Http\Controllers\Api\UserController;
 
 
 Route::post('register', [AuthController::class, 'register']);
@@ -31,6 +32,11 @@ Route::put('/compras/{id}', [CompraController::class, 'update']);
 Route::put('/reparaciones/{id}', [reparacionesController::class, 'update']);
 Route::put('/ventas/{id}', [ventasController::class, 'update']);
 
+Route::get('user', [UserController::class, 'index']); // Mostrar todos los usuarios
+Route::post('user', [UserController::class, 'store']); // Crear un nuevo usuario
+Route::get('/user/search', [UserController::class, 'search']); // Búsqueda de usuarios
+Route::put('user/{id}', [UserController::class, 'update']); // Editar un usuario
+Route::delete('user /{id}', [UserController::class, 'destroy']); // Eliminar un usuario
 Route::delete('/autos/{id}', [autosController::class, 'delete']);
 
 //PRIVATE ROUTES
