@@ -8,7 +8,7 @@ use App\Http\Controllers\Api\CompraController;
 use App\Http\Controllers\Api\reparacionesController;
 use App\Http\Controllers\Api\ventasController;
 use App\Http\Controllers\Api\UserController;
-
+use App\Http\Controllers\Api\ReporteController;
 
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
@@ -21,6 +21,8 @@ Route::get('/autos', [autosController::class,'index']);
 Route::get('/reparaciones', [reparacionesController::class,'index']);
 Route::get('/ventas', [VentasController::class,'index']);
 Route::get('/ventas/{id}', [ventasController::class, 'show']);
+Route::get('/reporte', [ReporteController::class, 'generarReporte']);
+Route::get('autos/count', [AutosController::class, 'count']);
 
 Route::post('/autos', [autosController::class,'store']);
 Route::post('/compras', [CompraController::class, 'store']);
@@ -32,11 +34,11 @@ Route::put('/compras/{id}', [CompraController::class, 'update']);
 Route::put('/reparaciones/{id}', [reparacionesController::class, 'update']);
 Route::put('/ventas/{id}', [ventasController::class, 'update']);
 
-Route::get('user', [UserController::class, 'index']); // Mostrar todos los usuarios
-Route::post('user', [UserController::class, 'store']); // Crear un nuevo usuario
-Route::get('/user/search', [UserController::class, 'search']); // Búsqueda de usuarios
-Route::put('user/{id}', [UserController::class, 'update']); // Editar un usuario
-Route::delete('user /{id}', [UserController::class, 'destroy']); // Eliminar un usuario
+Route::get('user', [UserController::class, 'index']); 
+Route::post('user', [UserController::class, 'store']); 
+Route::get('/user/search', [UserController::class, 'search']); 
+Route::put('user/{id}', [UserController::class, 'update']); 
+Route::delete('user /{id}', [UserController::class, 'destroy']); 
 Route::delete('/autos/{id}', [autosController::class, 'delete']);
 
 //PRIVATE ROUTES

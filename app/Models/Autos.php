@@ -26,5 +26,8 @@ class Autos extends Model
     public function compras()
     {
         return $this->hasMany(Compra::class, 'auto_id');
+        $autoCount = Autos::count(); // Contamos el total de autos
+
+    return view('dashboard', compact('autoCount')); // Pasamos la variable autoCount a la vista
     }
 }

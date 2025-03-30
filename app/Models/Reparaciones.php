@@ -34,6 +34,7 @@ class Reparaciones extends Model
         'costo_total_preparacion',
         'canc_consg',
         'estado_ctr',
+        'fecha_pago_reparacion'
     ];
 
     public function auto()

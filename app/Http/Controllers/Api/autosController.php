@@ -164,4 +164,9 @@ class autosController extends Controller
         ];
         return response()->json($data, 200);
     }
+
+    public function count()
+{
+    return response()->json(Autos::count());
+}
 }

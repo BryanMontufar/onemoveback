@@ -47,7 +47,7 @@ class reparacionesController extends Controller
             'costo_total_preparacion' => 'nullable|numeric',
             'canc_consg' => 'nullable|numeric',
             'estado_ctr' => 'nullable|string',
-            'fecha_pago' => 'nullable|date',
+            'fecha_pago_reparacion' => 'nullable|date',
         ]);
 
         $reparacion = Reparaciones::create($request->all());
