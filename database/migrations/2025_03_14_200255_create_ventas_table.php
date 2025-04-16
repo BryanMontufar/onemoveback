@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date('fecha_venta'); // Fecha Venta
             $table->string('comprador'); // Comprador
             $table->string('forma_pago'); // Forma de Pago
-            $table->integer('papeles'); // Papeles
+            $table->string('papeles'); // Papeles
             $table->string('notaria'); // Notaría
             $table->string('placa_rpp'); // Placa RPP
             $table->text('observaciones')->nullable(); // Observaciones

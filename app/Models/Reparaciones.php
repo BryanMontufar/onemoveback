@@ -31,6 +31,7 @@ class Reparaciones extends Model
         'cargas',
         'avaluo',
         'fideval',
+        'CUV',
         'costo_total_preparacion',
         'canc_consg',
         'estado_ctr',
